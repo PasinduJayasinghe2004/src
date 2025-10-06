@@ -30,4 +30,14 @@ public class Flight {
     public double getPrice() {
         return Price;
     }
+    public void addTicket(Ticket ticket){
+        tickets.add(ticket);
+    }
+    public ArrayList<Ticket> getTickets(){
+        return tickets;
+    }
+    public void showFlighgtInfo(){
+        System.out.println("Flight: "+getFlightNumber()+"to "+"\n"+getDestination()+"at "+getDepartureTime()+"Price: "+getPrice());
+        System.out.println("Tickets booked: "+tickets.size());
+    }
 }
