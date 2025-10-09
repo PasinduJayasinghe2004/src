@@ -41,8 +41,29 @@ public class AirlineSystem {
             System.out.println("Flight or Passenger Found.");
             return;
         }
+        Ticket ticket=new Ticket(seatNumber,passenger,flight);
+        flight.addTicket(ticket);
+        System.out.println("Ticket booked for "+passenger.getName()+"On flight "+flight.getFlightNumber());
 
+    }
+    public void showAllPassengers(){
+        if(passengers.isEmpty()){
+            System.out.println("No Passengers added.");
+            return;
+        }
+        for(Passenger p:passengers){
+            p.showInfo();
+        }
+    }
+    public void showAllFlight(){
+        if(flights.isEmpty()){
+            System.out.println("No Flight found.");
+            return;
 
+        }
+        for(Flight f:flights){
+            f.showFlighgtInfo();
+        }
     }
 
 
