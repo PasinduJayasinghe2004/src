@@ -1,4 +1,4 @@
-import java.awt.image.AreaAveragingScaleFilter;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -64,6 +64,12 @@ public class AirlineSystem {
         for(Flight f:flights){
             f.showFlighgtInfo();
         }
+    }
+    public void SaveData(){
+
+    }
+    public void LoadData(){
+
     }
 
 
