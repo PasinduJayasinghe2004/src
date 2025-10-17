@@ -33,7 +33,7 @@ public class AirlineSystem {
         }
         return null;
     }
-    public void bookTicket(String FlightNumber,String passengerId,String seatNumber){
+    public void bookTicket(String FlightNumber,String passengerId,String seatType){
         Flight flight=findFlightById(FlightNumber);
         Passenger passenger=findPassengerById(passengerId);
 
@@ -41,9 +41,32 @@ public class AirlineSystem {
             System.out.println("Flight or Passenger Found.");
             return;
         }
-        Ticket ticket=new Ticket(seatNumber,passenger,flight);
+        Ticket ticket;
+        String seatNumber;
+
+        if(seatType.equalsIgnoreCase("economy")){
+            if(!flight.hasEconomySeats()){
+                System.out.println("Economy class full for this flight.");
+                return;
+            }
+            seatNumber="E"+(flight.getTickets().size()+1);
+            ticket=new EconomyTicket(seatNumber,passenger,flight);
+
+        }else if(seatType.equalsIgnoreCase("business")){
+            if(!flight.hasBusinessSeats()){
+                System.out.println("⚠ Business class full for this flight.");
+                return;
+            }
+            seatNumber="B"+(flight.getTickets().size()+1);
+            ticket=new BusinessTicket(seatNumber,passenger,flight);
+        }else{
+            System.out.println("X invalid seat Type.Chose 'economy' or 'business'");
+            return;
+        }
+
+
         flight.addTicket(ticket);
-        System.out.println("Ticket booked for "+passenger.getName()+"On flight "+flight.getFlightNumber());
+        System.out.println(seatType.toUpperCase()+"Ticket booked for "+passenger.getName()+"On flight "+flight.getFlightNumber());
 
     }
     public void showAllPassengers(){

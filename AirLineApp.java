@@ -94,8 +94,6 @@ public class AirLineApp {
 
     }
     public static void BookTicket(){
-        System.out.println("Enter a seatNumber: ");
-        String SN=input.nextLine();
 
         System.out.println("Enter Passenger Id: ");
         String PID=input.nextLine();
@@ -103,7 +101,10 @@ public class AirLineApp {
         System.out.println("Enter Flight number: ");
         String FN=input.nextLine();
 
-        system.bookTicket(SN,PID,FN);
+        System.out.print("Enter seat type (Economy/Business): ");
+        String seatType = input.nextLine();
+
+        system.bookTicket(PID,FN,seatType);
 
 
 

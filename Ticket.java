@@ -1,4 +1,4 @@
-public class Ticket {
+public abstract class Ticket {
     private String seatNumber;
     private Passenger passenger;
     private Flight flight;
@@ -22,6 +22,8 @@ public class Ticket {
         return flight;
 
     }
+    public abstract double calculaterPrice();
+
     public void showTicket(){
         System.out.println("Ticket-seat: "+seatNumber+"\n"+"Passenger: "+passenger.getName()+"\n"+
                 "Flight: "+flight.getFlightNumber()+"\n"+"destination:  "+flight.getDestination());

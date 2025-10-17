@@ -7,12 +7,22 @@ public class Flight {
     private double Price;
     ArrayList<Ticket> tickets;
 
+    private int totalEconomySeats;
+    private int totalBusinessSeats;
+    private int bookedEconomySeats;
+    private int bookedBusinessSeats;
+
     public Flight(String FlightNumber,String departureTime,String destination,double Price){
         tickets=new ArrayList<>();
         this.FlightNumber=FlightNumber;
         this.destination=destination;
         this.departureTime=departureTime;
         this.Price=Price;
+
+        this.totalBusinessSeats=20;
+        this.totalEconomySeats=100;
+        this.bookedEconomySeats=0;
+        this.bookedBusinessSeats=0;
     }
 
     public String getFlightNumber() {
@@ -30,8 +40,17 @@ public class Flight {
     public double getPrice() {
         return Price;
     }
+    public boolean hasEconomySeats(){
+        return bookedEconomySeats<totalEconomySeats;
+    }
+    public boolean hasBusinessSeats(){
+        return bookedBusinessSeats<totalBusinessSeats;
+    }
+
     public void addTicket(Ticket ticket){
         tickets.add(ticket);
+        if(ticket instanceof EconomyTicket)bookedEconomySeats++;
+        else if(ticket instanceof BusinessTicket)bookedBusinessSeats++;
     }
     public ArrayList<Ticket> getTickets(){
         return tickets;
@@ -39,5 +58,7 @@ public class Flight {
     public void showFlighgtInfo(){
         System.out.println("Flight: "+getFlightNumber()+"to "+"\n"+getDestination()+"at "+getDepartureTime()+"Price: "+getPrice());
         System.out.println("Tickets booked: "+tickets.size());
+        System.out.println("Economy Seats: "+(totalEconomySeats-bookedEconomySeats)+"\n"+
+                "Business Seats: "+(totalBusinessSeats-bookedBusinessSeats));
     }
 }
